@@ -51,7 +51,7 @@ function App() {
 
   return (
       <div className='App'>
-        {result ? <div className='result'>{result + ms}</div> : null}
+        {result ? <div className='result'>{result + 'ms'}</div> : null}
         <Button 
           toggleReady={toggleReady}
           isReady={isReady}
