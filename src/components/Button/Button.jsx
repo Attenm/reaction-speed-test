@@ -24,7 +24,10 @@ export default function Button({toggleReady, isReady, isActive, makeInactive, se
         <button 
             style={{backgroundColor: buttonColor}}
             className='button'
-            onClick = {
+            onMouseDown = {
+                !isReady ? handleStart : handleFinish
+            }
+            onTouchStart = {
                 !isReady ? handleStart : handleFinish
             }
         >
