@@ -1,21 +1,21 @@
 import './button.scss';
 
-export default function Button({toggleReady, isReady, isActive, timeSinceActive, makeInactive, resetTime, setResult}) {
+export default function Button({toggleReady, isReady, isActive, makeInactive, setResult, startDate}) {
     
     const text = !isReady ? 'Старт' : '';
     let buttonColor;
     isReady ? buttonColor = 'lightgreen' : buttonColor = 'lightgray';
     isActive ? buttonColor = 'red' : null;
     const handleStart = () => {
-        resetTime(0)
-        setResult(0);
+        setResult(null);
         toggleReady();
     }
     const handleFinish = () => {
         if(!isActive){
             return;
         }
-        setResult(timeSinceActive);
+        const endDate = new Date();
+        setResult(endDate - startDate);
         makeInactive();
         toggleReady();
     }

@@ -6,8 +6,8 @@ function App() {
 
   const [isReady, setIsReady] = useState(false);
   const [isActive, setIsActive] = useState(false);
-  const [timeSinceActive, setTimeSinceActive] = useState(0);
   const [result, setResult] = useState(null);
+  const [startDate, setStartDate] = useState(null);
 
   const toggleReady = () => {
     setIsReady(isReady => !isReady);
@@ -17,12 +17,6 @@ function App() {
   }
   const makeInactive = () => {
     setIsActive(false);
-  }
-  const updateTime = () => {
-    setTimeSinceActive(timeSinceActive => timeSinceActive + 1);
-  }
-  const resetTime = () => {
-    setTimeSinceActive(0);
   }
 
   useEffect(()=>{
@@ -37,16 +31,7 @@ function App() {
   }, [isReady])
 
   useEffect(()=>{
-    let timer;
-    if(isActive){
-      timer = setInterval(()=>{
-        updateTime();
-      }, 1);
-    }
-    return () => {
-        clearInterval(timer);
-        resetTime();
-    }
+      setStartDate(new Date());
   }, [isActive])
 
   return (
@@ -56,10 +41,9 @@ function App() {
           toggleReady={toggleReady}
           isReady={isReady}
           isActive={isActive}
-          timeSinceActive={timeSinceActive}
           makeInactive={makeInactive}
-          resetTime={resetTime}
           setResult={setResult}
+          startDate={startDate}
         />
       </div>
   )
