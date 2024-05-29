@@ -20,16 +20,15 @@ export default function Button({toggleReady, isReady, isActive, makeInactive, se
         toggleReady();
     }
 
+    const handleEvent = () => {
+        return !isReady ? handleStart : handleFinish
+    }
+
     return (
-        <button 
-            style={{backgroundColor: buttonColor}}
-            className='button'
-            onMouseDown = {
-                !isReady ? handleStart : handleFinish
-            }
-            onTouchStart = {
-                !isReady ? handleStart : handleFinish
-            }
+        <button
+        style={{backgroundColor: buttonColor}}
+        className='button'
+        onMouseDown={handleEvent()}
         >
             {text}
         </button>
